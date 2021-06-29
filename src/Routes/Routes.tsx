@@ -2,15 +2,13 @@ import React, { FunctionComponent } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 //Pages
-import Home from "../Pages/Home";
-import Detail from "../Pages/Detail";
+import Results from "../Pages/Results";
 
 const Routes: FunctionComponent = () => {
 	return (
 		<Router>
 			<Switch>
-				<Route path='/' exact component={Home} />
-				<Route path='/detail' exact component={Detail} />
+				<Route path='/' exact component={Results} />
 			</Switch>
 		</Router>
 	);
