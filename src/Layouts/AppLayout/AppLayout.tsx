@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 
 //MUI Comps
 import Drawer from "@material-ui/core/Drawer";
@@ -18,10 +18,29 @@ import { useStyles } from "./styles";
 //Routes
 import MenuRoute from "../../Routes/MenuRoute/MenuRoute";
 
-const AppLayout: FunctionComponent = (props) => {
-	const classes = useStyles();
+//Redux
+import { connect } from 'react-redux';
+import { get_repositories } from '../../data/actions/repositoriesAction'
 
-	const { children } = props;
+type AppLayoutProps = {
+	get_repositories: (query: string) => void;
+}
+
+const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
+	const classes = useStyles();
+	const { children, get_repositories } = props;
+
+	const [searchQuery, setSearchQuery] = useState('')
+
+	const handleChange = (e: any) => {
+		setSearchQuery(e.target.value)
+	}
+
+	const onSubmit = (e: any) => {
+		if (e.key === 'Enter') {
+			get_repositories(searchQuery)
+		}
+	}
 
 	return (
 		<div className={classes.root}>
@@ -31,7 +50,7 @@ const AppLayout: FunctionComponent = (props) => {
 					<Toolbar>
 						<img src={logo} className={classes.logo} />
 					</Toolbar>
-					<div className={classes.search}>
+					<div className={classes.search}  >
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
@@ -42,6 +61,9 @@ const AppLayout: FunctionComponent = (props) => {
 								input: classes.inputInput,
 							}}
 							inputProps={{ "aria-label": "search" }}
+							onChange={handleChange}
+							onKeyPress={(e) => onSubmit(e)}
+
 						/>
 					</div>
 				</div>
@@ -68,4 +90,4 @@ const AppLayout: FunctionComponent = (props) => {
 	);
 };
 
-export default AppLayout;
+export default connect(null, { get_repositories })(AppLayout);

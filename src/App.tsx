@@ -8,11 +8,17 @@ import AppLayout from "./Layouts/AppLayout";
 //Routes
 import ContentRoute from "./Routes";
 
+//redux
+import { Provider } from "react-redux";
+import store from "./store";
+
 function App() {
 	return (
-		<AppLayout>
-			<ContentRoute />
-		</AppLayout>
+		<Provider store={store}>
+			<AppLayout>
+				<ContentRoute />
+			</AppLayout>
+		</Provider>
 	);
 }
 

@@ -16,6 +16,9 @@ const ContentRoute: FunctionComponent = () => {
 					<Results isRepo={false} />
 				</Route>
 				<Route path='/repo-details/:id' exact component={RepoDetails} />
+				<Route path='/user-details/:id' exact>
+					<Results isUserDetails />
+				</Route>
 			</Switch>
 		</HashRouter>
 	);

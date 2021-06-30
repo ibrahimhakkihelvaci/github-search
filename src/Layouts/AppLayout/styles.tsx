@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3),
+		padding: "42px 64px",
 	},
 	search: {
 		position: "relative",
