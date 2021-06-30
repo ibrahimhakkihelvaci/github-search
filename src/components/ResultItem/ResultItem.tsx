@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 
 //Styles
 import { useStyles } from "./styles";
@@ -19,7 +20,11 @@ const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo }) => {
 				<img src={isRepo ? bookIcon : avatar} />
 			</div>
 			<div className={classes.content}>
-				<div className={classes.resultTitle}>Test Deneme Projesi</div>
+				<Link
+					to={`/${isRepo ? "repo-details" : "user-details"}/1`}
+					style={{ textDecoration: "none" }}>
+					<div className={classes.resultTitle}>Test Deneme Projesi</div>
+				</Link>
 				<div className={classes.resultDesc}>
 					Test Deneme ProjesiTest Deneme ProjesiTest Deneme Projesi
 				</div>

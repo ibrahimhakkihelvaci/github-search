@@ -6,12 +6,12 @@ import "./App.css";
 import AppLayout from "./Layouts/AppLayout";
 
 //Routes
-import Routes from "./Routes";
+import ContentRoute from "./Routes";
 
 function App() {
 	return (
 		<AppLayout>
-			<Routes />
+			<ContentRoute />
 		</AppLayout>
 	);
 }

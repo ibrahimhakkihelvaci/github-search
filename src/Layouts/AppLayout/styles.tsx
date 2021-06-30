@@ -1,7 +1,7 @@
 import { makeStyles, fade } from "@material-ui/core/styles";
 import colors from "../../utils/colors";
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 
 const useStyles = makeStyles((theme) => ({
 	root: {

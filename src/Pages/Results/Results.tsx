@@ -3,12 +3,16 @@ import React, { FunctionComponent } from "react";
 //Components
 import ResultItem from "../../components/ResultItem";
 
-const Results: FunctionComponent = () => {
+type ResultsProps = {
+	isRepo?: any;
+};
+
+const Results: FunctionComponent<ResultsProps> = ({ isRepo }) => {
 	return (
 		<>
-			<ResultItem isRepo={true} />
-			<ResultItem isRepo={false} />
-			<ResultItem isRepo={true} />
+			<ResultItem isRepo={isRepo} />
+			<ResultItem isRepo={isRepo} />
+			<ResultItem isRepo={isRepo} />
 		</>
 	);
 };
