@@ -12,10 +12,7 @@ const initialState: UsersReducersProps = {
 
 type Action = {
 	type: "SET_USERS";
-	payload: {
-		total_count: number;
-		list: [];
-	};
+	payload: UsersReducersProps
 };
 
 export default function (

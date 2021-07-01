@@ -8,6 +8,8 @@ const requests = {
 	getUsers: (query) => axios.get(`${base_url}/search/users?q=${query}`),
 	getUserByName: (userName) => axios.get(`${base_url}/users/${userName}`),
 	getUserRepos: (userName) => axios.get(`${base_url}/users/${userName}/repos`),
+	getRepoDetails: (username, repoName) =>
+		axios.get(`${base_url}/repos/ibrahimhakkihelvaci/Social-network-app`),
 };
 
 export default requests;

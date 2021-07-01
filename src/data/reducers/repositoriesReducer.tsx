@@ -23,7 +23,7 @@ export default function (
 	action: Action
 ): RepositoriesReducersProps {
 	const { type, payload } = action;
-
+	console.log(payload)
 	switch (type) {
 		case SET_REPOSITORIES:
 			return {

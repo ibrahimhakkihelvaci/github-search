@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 //Components
 import CustomListItem from "../../../components/CustomListItem";
@@ -16,9 +16,17 @@ import LinkIcon from "@material-ui/icons/Link";
 import eye from "../../../utils/images/eye-24.png";
 import star from "../../../utils/images/star-24.png";
 
-const RepoDetails = () => {
-	const classes = useStyles();
+//Redux
+import { connect } from 'react-redux'
+import { RepositoryDetailsReducerProps } from '../../../data/reducers/repositoryDetailsReducer'
 
+type RepoDetailsProps = {
+	repository: RepositoryDetailsReducerProps
+}
+
+const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository }) => {
+	const classes = useStyles();
+	console.log(repository)
 	const repoContentItems = [
 		{
 			icon: <img src={eye} />,
@@ -32,7 +40,7 @@ const RepoDetails = () => {
 		},
 		{
 			icon: <img src={eye} />,
-			text: "Watch",
+			text: "Fork",
 			count: "2",
 		},
 	];
@@ -43,15 +51,14 @@ const RepoDetails = () => {
 				<img src={repoIcon} style={{ height: 64, width: 64 }} />
 				<div className={classes.headerContent}>
 					<Typography variant='h4' gutterBottom className={classes.repoTitle}>
-						airbnb/lottie-android
+						{repository.full_name}
 					</Typography>
 					<Typography gutterBottom className={classes.repoDesc}>
-						Render After Effects animations natively on Android and iOS, Web,
-						and React Native
+						{repository.description}
 					</Typography>
 					<Typography gutterBottom className={classes.repoLink}>
 						<LinkIcon style={{ color: colors.black, marginRight: 8 }} />
-						airbnb/lottie-android
+						{repository.full_name}
 					</Typography>
 				</div>
 			</div>
@@ -77,4 +84,11 @@ const RepoDetails = () => {
 	);
 };
 
-export default RepoDetails;
+type reduxProps = {
+	RepositoryDetail: RepositoryDetailsReducerProps;
+};
+const mapStateToProps = (state: reduxProps) => ({
+	repository: state.RepositoryDetail,
+});
+
+export default connect(mapStateToProps)(RepoDetails);

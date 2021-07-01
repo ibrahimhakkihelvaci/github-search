@@ -6,6 +6,7 @@ import { combineReducers } from "redux";
 //reducers
 import repositoriesReducer from "./data/reducers/repositoriesReducer";
 import usersReducer from "./data/reducers/usersReducer";
+import repositoryDetailsReducer from "./data/reducers/repositoryDetailsReducer";
 
 const middleware = [thunk];
 
@@ -14,6 +15,7 @@ const initialState = {};
 const appReducers = combineReducers({
 	Repositiories: repositoriesReducer,
 	Users: usersReducer,
+	RepositoryDetail: repositoryDetailsReducer
 });
 
 const store = createStore(
