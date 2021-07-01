@@ -6,27 +6,30 @@ import { useStyles } from "./styles";
 
 //Utils
 import bookIcon from "../../utils/images/book-icon.png";
-import avatar from "../../utils/images/avatar.png";
 
 type ResultItemTypes = {
 	isRepo?: boolean;
+	avatar?: string
+	title: string,
+	description: string,
+	itemId: string
 };
 
-const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo }) => {
+const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo, title, description, avatar, itemId }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.container}>
 			<div className={classes.icon}>
-				<img src={isRepo ? bookIcon : avatar} />
+				<img src={avatar ? avatar : bookIcon} style={{ height: 24, width: 24 }} />
 			</div>
 			<div className={classes.content}>
 				<Link
-					to={`/${isRepo ? "repo-details" : "user-details"}/1`}
+					to={`/${isRepo ? "repo-details" : "user-details"}/${isRepo ? itemId : title}`}
 					style={{ textDecoration: "none" }}>
-					<div className={classes.resultTitle}>Test Deneme Projesi</div>
+					<div className={classes.resultTitle}>{title}</div>
 				</Link>
 				<div className={classes.resultDesc}>
-					Test Deneme ProjesiTest Deneme ProjesiTest Deneme Projesi
+					{description}
 				</div>
 			</div>
 		</div>

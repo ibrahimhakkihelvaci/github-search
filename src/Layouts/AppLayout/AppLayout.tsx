@@ -20,15 +20,16 @@ import MenuRoute from "../../Routes/MenuRoute/MenuRoute";
 
 //Redux
 import { connect } from 'react-redux';
-import { get_repositories } from '../../data/actions/repositoriesAction'
+import { get_repositories, get_users } from '../../data/actions'
 
 type AppLayoutProps = {
 	get_repositories: (query: string) => void;
+	get_users: (query: string) => void;
 }
 
 const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 	const classes = useStyles();
-	const { children, get_repositories } = props;
+	const { children, get_repositories, get_users } = props;
 
 	const [searchQuery, setSearchQuery] = useState('')
 
@@ -39,6 +40,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 	const onSubmit = (e: any) => {
 		if (e.key === 'Enter') {
 			get_repositories(searchQuery)
+			get_users(searchQuery)
 		}
 	}
 
@@ -90,4 +92,4 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 	);
 };
 
-export default connect(null, { get_repositories })(AppLayout);
+export default connect(null, { get_repositories, get_users })(AppLayout);
