@@ -12,10 +12,11 @@ type ResultItemTypes = {
 	avatar?: string
 	title: string,
 	description: string,
-	itemId: string
+	itemId: string,
+	ownerName?: string
 };
 
-const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo, title, description, avatar, itemId }) => {
+const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo, title, description, avatar, itemId, ownerName }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.container}>
@@ -24,7 +25,7 @@ const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo, title, descrip
 			</div>
 			<div className={classes.content}>
 				<Link
-					to={`/${isRepo ? "repo-details" : "user-details"}/${isRepo ? itemId : title}`}
+					to={!isRepo ? `/user-details/${title}` : `/repo-details/${ownerName}/${title}`}
 					style={{ textDecoration: "none" }}>
 					<div className={classes.resultTitle}>{title}</div>
 				</Link>

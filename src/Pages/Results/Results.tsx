@@ -7,8 +7,6 @@ import Button from "@material-ui/core/Button";
 //Components
 import ResultItem from "../../components/ResultItem";
 
-//Utils
-import requests from '../../utils/agent'
 
 type ResultsProps = {
 	isRepo?: any;
@@ -24,7 +22,6 @@ const Results: FunctionComponent<ResultsProps> = ({
 	isUserDetails,
 	data
 }) => {
-
 	return (
 		<>
 			<div style={{ marginBottom: 18 }}>
@@ -49,7 +46,7 @@ const Results: FunctionComponent<ResultsProps> = ({
 				{
 					isRepo ? (
 						data.list.map((item: any) => (
-							<ResultItem isRepo={isRepo} title={item.full_name} description={item.description} itemId={item.id} />
+							<ResultItem isRepo={isRepo} ownerName={item.owner.login} title={item.name} description={item.description} itemId={item.id} />
 						))
 					) : (
 						data.list.map((item: any) => (

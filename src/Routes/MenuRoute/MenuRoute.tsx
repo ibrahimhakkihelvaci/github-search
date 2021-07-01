@@ -11,7 +11,7 @@ const MenuRoute: FunctionComponent = () => {
 		<HashRouter>
 			<Route path='/' exact component={MenuItems} />
 			<Route path='/users' exact component={MenuItems} />
-			<Route path='/repo-details/:id' exact component={RepoDetails} />
+			<Route path='/repo-details/:owner/:name' exact component={RepoDetails} />
 			<Route path='/user-details/:id' exact component={UserDetails} />
 		</HashRouter>
 	);

@@ -10,7 +10,7 @@ import colors from "../../utils/colors";
 type CustomListItemProps = {
 	icon: any;
 	text: string;
-	count: string;
+	count: number;
 };
 
 const CustomListItem: FunctionComponent<CustomListItemProps> = ({
@@ -22,7 +22,7 @@ const CustomListItem: FunctionComponent<CustomListItemProps> = ({
 	return (
 		<div className={classes.container}>
 			<div className={classes.left}>
-				{icon}
+				{<img src={icon} />}
 				<Typography className={classes.text} style={{ marginLeft: 8 }}>
 					{text}
 				</Typography>

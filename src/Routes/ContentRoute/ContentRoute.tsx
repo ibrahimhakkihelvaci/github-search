@@ -27,7 +27,7 @@ const ContentRoute: FunctionComponent<ContentRouteProps> = ({ repositiories, use
 				<Route path='/users' exact>
 					<Results isRepo={false} data={users} />
 				</Route>
-				<Route path='/repo-details/:id' exact component={RepoDetails} />
+				<Route path='/repo-details/:owner/:name' exact component={RepoDetails} />
 				<Route path='/user-details/:id' exact component={UserDetails} />
 			</Switch>
 		</HashRouter>

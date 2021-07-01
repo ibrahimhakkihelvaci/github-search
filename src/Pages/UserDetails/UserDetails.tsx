@@ -19,7 +19,6 @@ const UserDetails: FunctionComponent<UserDetailsProps> = ({ match }) => {
     const [userRepos, setUserRepos] = useState<any>(null)
     const { id } = match.params;
 
-
     const getUserRepos = async () => {
         try {
             const res = await requests.getUserRepos(id)
@@ -53,7 +52,7 @@ const UserDetails: FunctionComponent<UserDetailsProps> = ({ match }) => {
             <div>
                 {
                     userRepos && userRepos.map((item: any) => (
-                        <ResultItem isRepo={true} title={item.name} description={item.description} itemId={item.id} />
+                        <ResultItem isRepo={true} title={item.name} description={item.description} itemId={item.id} ownerName={item.owner.login} />
                     ))
                 }
             </div>
