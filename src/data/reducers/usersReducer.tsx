@@ -1,19 +1,29 @@
-import { SET_USERS } from "../actions/types";
+import { SET_USERS, SET_LOADING } from "../actions/types";
 
 export type UsersReducersProps = {
 	total_count: number;
 	list: any;
+	loading: boolean
 };
 
 const initialState: UsersReducersProps = {
 	total_count: 0,
 	list: [],
+	loading: false
 };
 
-type Action = {
-	type: "SET_USERS";
-	payload: UsersReducersProps
-};
+
+type Action =
+	| {
+		type: "SET_USERS";
+		payload: UsersReducersProps,
+
+	}
+	| {
+		type: 'SET_LOADING';
+		payload: UsersReducersProps
+	}
+
 
 export default function (
 	state = initialState,
@@ -27,7 +37,13 @@ export default function (
 				...state,
 				total_count: payload.total_count,
 				list: payload.list,
+				loading: false
 			};
+		case SET_LOADING:
+			return {
+				...state,
+				loading: true
+			}
 		default:
 			return { ...state };
 	}

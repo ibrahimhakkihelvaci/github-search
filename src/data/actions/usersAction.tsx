@@ -1,4 +1,4 @@
-import { SET_USERS } from "./types";
+import { SET_USERS, SET_LOADING } from "./types";
 import { Dispatch } from "redux";
 
 //Requests
@@ -6,6 +6,10 @@ import requests from '../../utils/agent'
 
 export const get_users = (query: string) => async (dispatch: Dispatch): Promise<void> => {
     try {
+
+        dispatch({
+            type: SET_LOADING
+        })
 
         const res = await requests.getUsers(query)
         const { data } = res
@@ -17,6 +21,8 @@ export const get_users = (query: string) => async (dispatch: Dispatch): Promise<
                 list: data.items
             }
         });
+
+
 
     } catch (error) {
         console.log(error);

@@ -1,3 +1,4 @@
 export const SET_REPOSITORIES = "SET_REPOSITORIES";
 export const SET_USERS = "SET_USERS";
 export const SET_REPOSITORY = 'SET_REPOSITORY'
+export const SET_LOADING = "SET_LOADING"

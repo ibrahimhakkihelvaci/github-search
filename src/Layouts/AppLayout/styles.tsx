@@ -68,6 +68,10 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: "center",
 		width: "auto",
 	},
+	emptyPage: {
+		height: '95vh',
+		width: '100%',
+	}
 }));
 
 export { useStyles };
