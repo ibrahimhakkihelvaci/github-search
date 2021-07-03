@@ -1,0 +1,51 @@
+import React, { FunctionComponent } from "react";
+
+//MUI Comps
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+
+//Components
+import ResultItem from "../ResultItem";
+
+//Utils
+import { User, Repository } from '../../types'
+
+
+type ResultsProps = {
+	isRepo?: boolean;
+	data: {
+		list: User[] | Repository[],
+		total_count: number
+	}
+};
+
+const Results: FunctionComponent<ResultsProps> = ({
+	isRepo,
+	data
+}) => {
+	return (
+		<>
+			<div style={{ marginBottom: 18 }}>
+				<Typography style={{ fontSize: 24 }}>
+					{data.total_count} Repository Results
+				</Typography>
+			</div>
+			<div>
+				{
+					isRepo ? (
+						data.list.map((item: any) => (
+							<ResultItem isRepo={isRepo} ownerName={item.owner.login} title={item.name} description={item.description} />
+						))
+					) : (
+						data.list.map((item: any) => (
+							<ResultItem isRepo={isRepo} title={item.login} description={item.url} avatar={item.avatar_url} />
+						))
+					)
+				}
+
+			</div>
+		</>
+	);
+};
+
+export default Results;

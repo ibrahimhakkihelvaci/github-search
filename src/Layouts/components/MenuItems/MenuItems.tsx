@@ -29,7 +29,7 @@ const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_
 		{
 			text: "Repositories",
 			icon: <InsertDriveFileIcon />,
-			link: "/",
+			link: "/repositories",
 			count: repositiory_count
 		},
 		{

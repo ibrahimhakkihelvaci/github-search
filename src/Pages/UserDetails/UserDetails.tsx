@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useEffect } from "react";
 
 //MUI Comps
 import Typography from "@material-ui/core/Typography";
@@ -9,14 +9,14 @@ import ResultItem from '../../components/ResultItem'
 
 //Utils
 import requests from '../../utils/agent'
-import { useEffect } from "react";
+import { Repository } from '../../types'
 
 type UserDetailsProps = {
     match: { params: { id: number } };
 };
 
 const UserDetails: FunctionComponent<UserDetailsProps> = ({ match }) => {
-    const [userRepos, setUserRepos] = useState<any>(null)
+    const [userRepos, setUserRepos] = useState<Repository[] | null>(null)
     const { id } = match.params;
 
     const getUserRepos = async () => {
@@ -52,7 +52,7 @@ const UserDetails: FunctionComponent<UserDetailsProps> = ({ match }) => {
             <div>
                 {
                     userRepos && userRepos.map((item: any) => (
-                        <ResultItem isRepo={true} title={item.name} description={item.description} itemId={item.id} ownerName={item.owner.login} />
+                        <ResultItem isRepo={true} title={item.name} description={item.description} ownerName={item.owner.login} />
                     ))
                 }
             </div>

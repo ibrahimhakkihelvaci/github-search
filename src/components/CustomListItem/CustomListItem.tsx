@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import colors from "../../utils/colors";
 
 type CustomListItemProps = {
-	icon: any;
+	icon: string;
 	text: string;
 	count: number;
 };

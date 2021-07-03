@@ -1,8 +1,9 @@
 import { SET_REPOSITORIES, SET_LOADING } from "../actions/types";
+import { Repository } from '../../types'
 
 export type RepositoriesReducersProps = {
 	total_count: number;
-	list: any;
+	list: Repository[];
 	loading: boolean
 };
 

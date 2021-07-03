@@ -1,8 +1,9 @@
 import { SET_USERS, SET_LOADING } from "../actions/types";
+import { User } from '../../types'
 
 export type UsersReducersProps = {
 	total_count: number;
-	list: any;
+	list: User[];
 	loading: boolean
 };
 

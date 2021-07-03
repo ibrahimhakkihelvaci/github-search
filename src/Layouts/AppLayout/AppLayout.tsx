@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
+import { useHistory, useLocation, } from "react-router-dom";
 
 //MUI Comps
 import Drawer from "@material-ui/core/Drawer";
@@ -31,15 +32,32 @@ type AppLayoutProps = {
 	get_repositories: (query: string) => void;
 	get_users: (query: string) => void;
 	user_loading: boolean;
-	repository_loading: boolean
+	repository_loading: boolean;
+}
+
+const useQuery = () => {
+	return new URLSearchParams(useLocation().search);
 }
 
 const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 	const classes = useStyles();
-	const { children, get_repositories, get_users, user_loading, repository_loading } = props;
+	const { children, get_repositories, get_users, user_loading, repository_loading, } = props;
+
+	let history = useHistory()
+	let location = useLocation()
+	let query = useQuery();
+
+	const searchStr = query.get("search")
+
 
 	const [isSearched, setIsSearched] = useState(false)
-	const [searchQuery, setSearchQuery] = useState('')
+	const [searchQuery, setSearchQuery] = useState('');
+
+	const searchInGithub = () => {
+		get_repositories(searchQuery)
+		get_users(searchQuery)
+	}
+
 
 	const handleChange = (e: any) => {
 		setSearchQuery(e.target.value)
@@ -47,20 +65,43 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 
 	const onSubmit = (e: any) => {
 		if (e.key === 'Enter') {
-			get_repositories(searchQuery)
-			get_users(searchQuery)
-			setIsSearched(true)
+			searchInGithub()
+			localStorage.setItem('searchStr', searchQuery)
+			history.push(`/repositories`)
 		}
 	}
-	console.log('user', user_loading)
-	console.log('repo', repository_loading)
+
+	useEffect(() => {
+		const searchStrInLocalStorage = localStorage.getItem('searchStr')
+		if (searchStrInLocalStorage) {
+			setSearchQuery(searchStrInLocalStorage)
+		}
+
+	}, [])
+
+	useEffect(() => {
+		if (searchQuery && location.pathname != '/') {
+			searchInGithub()
+		}
+	}, [searchQuery])
+
+
+	useEffect(() => {
+		if (location.pathname == '/')
+			setIsSearched(false)
+		else
+			setIsSearched(true)
+
+	}, [location])
+
+
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
 			<AppBar position='fixed' className={classes.appBar}>
 				<div className={classes.appBarContent}>
 					<Toolbar>
-						<img src={logo} className={classes.logo} />
+						<img src={logo} className={classes.logo} onClick={() => history.push('/')} />
 					</Toolbar>
 					<div className={classes.search}  >
 						<div className={classes.searchIcon}>

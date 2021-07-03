@@ -12,16 +12,15 @@ type ResultItemTypes = {
 	avatar?: string
 	title: string,
 	description: string,
-	itemId: string,
-	ownerName?: string
+	ownerName?: string,
 };
 
-const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo, title, description, avatar, itemId, ownerName }) => {
+const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo, title, description, avatar, ownerName }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.container}>
 			<div className={classes.icon}>
-				<img src={avatar ? avatar : bookIcon} style={{ height: 24, width: 24 }} />
+				<img src={!isRepo ? avatar : bookIcon} style={{ height: 24, width: 24 }} />
 			</div>
 			<div className={classes.content}>
 				<Link
