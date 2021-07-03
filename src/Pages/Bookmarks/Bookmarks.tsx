@@ -7,6 +7,8 @@ import { BookmarksReducersProps } from '../../data/reducers/bookmarksReducer'
 //Components
 import Results from '../../components/Results'
 
+import { Repository } from '../../types'
+
 type BookmarksProps = {
     bookmarks: any
 }

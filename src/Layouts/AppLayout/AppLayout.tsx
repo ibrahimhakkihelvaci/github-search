@@ -11,6 +11,7 @@ import Divider from "@material-ui/core/Divider";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import Button from '@material-ui/core/Button';
+import BookmarkBorderSharpIcon from '@material-ui/icons/BookmarkBorderSharp';
 
 //Utils
 import logo from "../../utils/images/digieggs-logo.png";
@@ -34,10 +35,6 @@ type AppLayoutProps = {
 	get_users: (query: string) => void;
 	user_loading: boolean;
 	repository_loading: boolean;
-}
-
-const useQuery = () => {
-	return new URLSearchParams(useLocation().search);
 }
 
 const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
@@ -71,16 +68,11 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 		}
 	}
 
-
-
 	useEffect(() => {
 		if (searchQuery && location.pathname != '/') {
 			searchInGithub()
 		}
 	}, [])
-
-
-
 
 	useEffect(() => {
 		if (location.pathname == '/')
@@ -89,7 +81,6 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 			setIsSearched(true)
 
 	}, [location])
-
 
 	return (
 		<div className={classes.root}>
@@ -115,12 +106,11 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 
 						/>
 					</div>
-					<Button
-						variant="contained"
-						color="secondary"
+					<Button className={classes.bookmarkButton}
+						startIcon={<BookmarkBorderSharpIcon />}
 						onClick={() => history.push('/bookmarks')}
-					>
-						Delete
+						style={location.pathname === "/bookmarks" ? { background: "#557dbb" } : {}}>
+						Bookmarks
 					</Button>
 				</div>
 

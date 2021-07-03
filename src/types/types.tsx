@@ -1,4 +1,5 @@
 export type Repository = {
+    id: string,
     name: string,
     description: string,
     full_name: string,

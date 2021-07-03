@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState, useEffect } from "react";
 
 //Components
 import CustomListItem from "../../../components/CustomListItem";
@@ -12,6 +12,7 @@ import colors from "../../../utils/colors";
 import Typography from "@material-ui/core/Typography";
 import LinkIcon from "@material-ui/icons/Link";
 import Button from '@material-ui/core/Button';
+import BookmarkBorderSharpIcon from '@material-ui/icons/BookmarkBorderSharp';
 
 //Icons
 import eye from "../../../utils/images/eye-24.png";
@@ -24,17 +25,20 @@ import pullRequests from '../../../utils/images/git-pull-request-24.png'
 //Redux
 import { connect } from 'react-redux'
 import { RepositoryDetailsReducerProps } from '../../../data/reducers/repositoryDetailsReducer'
+import { BookmarksReducersProps } from '../../../data/reducers/bookmarksReducer'
 import { add_bookmark } from '../../../data/actions'
 import { Repository } from '../../../types'
 
 type RepoDetailsProps = {
 	repository: Repository,
 	add_bookmark: (repository: any) => void
+	bookmarks: Repository[]
 }
 
-const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, add_bookmark }) => {
+const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmarks, add_bookmark }) => {
 	const classes = useStyles();
-	const { subscribers_count, html_url, stargazers_count, pull_requests, open_issues, full_name, forks, description, branch } = repository
+	const { subscribers_count, html_url, stargazers_count, pull_requests, open_issues, full_name, forks, description, branch, id } = repository
+	const [addedInBookmark, setAddenInBookmark] = useState(false)
 
 	const repoContentItems = [
 		{
@@ -71,6 +75,16 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, add_book
 			count: pull_requests,
 		},
 	];
+
+	useEffect(() => {
+		if (bookmarks && repository) {
+			const isAdded = bookmarks.find((bookmark) => bookmark.id == id)
+			if (isAdded)
+				setAddenInBookmark(true)
+			else
+				setAddenInBookmark(false)
+		}
+	}, [bookmarks, repository])
 
 	return (
 		<div className={classes.container}>
@@ -111,8 +125,14 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, add_book
 				))}
 			</div>
 			<div className={classes.bookmarkButton}>
-				<Button variant="outlined" color="primary" className={classes.addBookmarkButton} onClick={() => add_bookmark(repository)}>
-					Add to Bookmarks
+				<Button
+					variant="outlined"
+					color="primary"
+					startIcon={<BookmarkBorderSharpIcon />}
+					className={addedInBookmark ? classes.removeBookmarkButton : classes.addBookmarkButton}
+					onClick={() => add_bookmark(repository)}>
+
+					{addedInBookmark ? "Remove bookmark" : "Add to bookmark"}
 				</Button>
 			</div>
 		</div>
@@ -121,9 +141,11 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, add_book
 
 type reduxProps = {
 	RepositoryDetail: RepositoryDetailsReducerProps;
+	Bookmarks: BookmarksReducersProps;
 };
 const mapStateToProps = (state: reduxProps) => ({
 	repository: state.RepositoryDetail.repository,
+	bookmarks: state.Bookmarks.list
 });
 
 export default connect(mapStateToProps, { add_bookmark })(RepoDetails);

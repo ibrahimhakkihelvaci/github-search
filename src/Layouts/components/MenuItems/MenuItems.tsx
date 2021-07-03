@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
+import { useStyles } from "./styles";
+import { useHistory, useLocation, } from "react-router-dom";
 
 //MUI Comps
 import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
@@ -25,6 +27,10 @@ type MenuItemsProps = {
 }
 
 const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_count }) => {
+
+	const classes = useStyles()
+	let location = useLocation()
+
 	const menuItems = [
 		{
 			text: "Repositories",
@@ -49,10 +55,12 @@ const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_
 		<>
 			{menuItems.map((item) => (
 				<Link to={`${item.link}`} style={{ textDecoration: "none", color: colors.black }}>
-					<ListItem button key={item.text}>
-						<ListItemIcon>{item.icon}</ListItemIcon>
+					<ListItem button key={item.text} className={location.pathname == item.link ? classes.selectedMenuItem : classes.menuItem}>
+						<ListItemIcon
+							style={{ color: location.pathname == item.link ? colors.darkBlue : colors.lightGray }}
+						>{item.icon}</ListItemIcon>
 						<ListItemText primary={item.text} />
-						<ListItemSecondaryAction style={{ fontSize: 16, color: colors.black }}>
+						<ListItemSecondaryAction style={{ fontSize: 16, color: location.pathname == item.link ? colors.darkBlue : colors.lightGray }}>
 							{item.count}
 						</ListItemSecondaryAction>
 					</ListItem>

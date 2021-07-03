@@ -7,5 +7,7 @@ const colors = {
 	black: "#000000",
 	lightBlue2: "#2c98f0",
 	turquoise: "#85b0f2",
+	blue: "#d9e8ff",
+	lightGray: "#707070",
 };
 export default colors;

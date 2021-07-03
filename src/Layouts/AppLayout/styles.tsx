@@ -71,7 +71,19 @@ const useStyles = makeStyles((theme) => ({
 	emptyPage: {
 		height: '95vh',
 		width: '100%',
-	}
+	},
+	bookmarkButton: {
+		marginLeft: 32,
+		color: "rgba(255, 255, 255, 0.87)",
+		textTransform: "capitalize",
+		fontSize: "1rem",
+		"&:active": {
+			background: "#557dbb",
+		},
+		"&:hover": {
+			background: "#557dbb",
+		},
+	},
 }));
 
 export { useStyles };
