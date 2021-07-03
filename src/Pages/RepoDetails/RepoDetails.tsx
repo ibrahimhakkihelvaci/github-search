@@ -32,7 +32,7 @@ type reduxProps = {
 	RepositoryDetail: RepositoryDetailsReducerProps;
 };
 const mapStateToProps = (state: reduxProps) => ({
-	repositoryDescription: state.RepositoryDetail.description,
+	repositoryDescription: state.RepositoryDetail.repository.description,
 });
 
 export default connect(mapStateToProps, { get_repo_details })(RepoDetails);

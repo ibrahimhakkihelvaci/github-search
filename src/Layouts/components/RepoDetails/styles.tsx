@@ -33,6 +33,37 @@ const useStyles = makeStyles((theme) => ({
 	repoFooter: {
 		marginTop: 32,
 	},
+	bookmarkButton: {
+		marginTop: 32
+	},
+	addBookmarkButton: {
+		width: "100%",
+		height: "38px",
+		color: "#2c98f0",
+		textTransform: "capitalize",
+		fontSize: "1rem",
+		border: "1px solid #2c98f0",
+		borderRadius: "4px",
+		"&:hover": {
+			backgroundColor: "#2c98f0",
+			color: "#ffffff",
+		},
+	},
+
+	removeBookmarkButton: {
+		width: "268px",
+		height: "38px",
+		color: "#ffffff",
+		backgroundColor: "#2c98f0",
+		textTransform: "capitalize",
+		fontSize: "1rem",
+		border: "1px solid #2c98f0",
+		borderRadius: "4px",
+		"&:hover": {
+			backgroundColor: "#ffffff",
+			color: "#2c98f0",
+		},
+	},
 }));
 
 export { useStyles };

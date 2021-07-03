@@ -11,6 +11,7 @@ import colors from "../../../utils/colors";
 //MUI Comps
 import Typography from "@material-ui/core/Typography";
 import LinkIcon from "@material-ui/icons/Link";
+import Button from '@material-ui/core/Button';
 
 //Icons
 import eye from "../../../utils/images/eye-24.png";
@@ -19,15 +20,19 @@ import fork from '../../../utils/images/git-fork-24.png'
 import branches from '../../../utils/images/git-branch-24.png'
 import issues from '../../../utils/images/issue-opened-24.png'
 import pullRequests from '../../../utils/images/git-pull-request-24.png'
+
 //Redux
 import { connect } from 'react-redux'
 import { RepositoryDetailsReducerProps } from '../../../data/reducers/repositoryDetailsReducer'
+import { add_bookmark } from '../../../data/actions'
+import { Repository } from '../../../types'
 
 type RepoDetailsProps = {
-	repository: RepositoryDetailsReducerProps
+	repository: Repository,
+	add_bookmark: (repository: any) => void
 }
 
-const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository }) => {
+const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, add_bookmark }) => {
 	const classes = useStyles();
 	const { subscribers_count, html_url, stargazers_count, pull_requests, open_issues, full_name, forks, description, branch } = repository
 
@@ -105,6 +110,11 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository }) => {
 					/>
 				))}
 			</div>
+			<div className={classes.bookmarkButton}>
+				<Button variant="outlined" color="primary" className={classes.addBookmarkButton} onClick={() => add_bookmark(repository)}>
+					Add to Bookmarks
+				</Button>
+			</div>
 		</div>
 	);
 };
@@ -113,7 +123,7 @@ type reduxProps = {
 	RepositoryDetail: RepositoryDetailsReducerProps;
 };
 const mapStateToProps = (state: reduxProps) => ({
-	repository: state.RepositoryDetail,
+	repository: state.RepositoryDetail.repository,
 });
 
-export default connect(mapStateToProps)(RepoDetails);
+export default connect(mapStateToProps, { add_bookmark })(RepoDetails);

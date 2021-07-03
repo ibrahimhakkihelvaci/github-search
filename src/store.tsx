@@ -7,6 +7,7 @@ import { combineReducers } from "redux";
 import repositoriesReducer from "./data/reducers/repositoriesReducer";
 import usersReducer from "./data/reducers/usersReducer";
 import repositoryDetailsReducer from "./data/reducers/repositoryDetailsReducer";
+import bookmarksReducer from "./data/reducers/bookmarksReducer";
 
 const middleware = [thunk];
 
@@ -15,6 +16,7 @@ const initialState = {};
 const appReducers = combineReducers({
 	Repositiories: repositoriesReducer,
 	Users: usersReducer,
+	Bookmarks: bookmarksReducer,
 	RepositoryDetail: repositoryDetailsReducer
 });
 

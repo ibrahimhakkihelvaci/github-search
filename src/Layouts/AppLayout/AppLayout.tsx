@@ -10,6 +10,7 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+import Button from '@material-ui/core/Button';
 
 //Utils
 import logo from "../../utils/images/digieggs-logo.png";
@@ -45,13 +46,12 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 
 	let history = useHistory()
 	let location = useLocation()
-	let query = useQuery();
 
-	const searchStr = query.get("search")
+	const searchStr = localStorage.getItem('searchStr')
 
 
 	const [isSearched, setIsSearched] = useState(false)
-	const [searchQuery, setSearchQuery] = useState('');
+	const [searchQuery, setSearchQuery] = useState(searchStr ? searchStr : '');
 
 	const searchInGithub = () => {
 		get_repositories(searchQuery)
@@ -71,19 +71,15 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 		}
 	}
 
-	useEffect(() => {
-		const searchStrInLocalStorage = localStorage.getItem('searchStr')
-		if (searchStrInLocalStorage) {
-			setSearchQuery(searchStrInLocalStorage)
-		}
 
-	}, [])
 
 	useEffect(() => {
 		if (searchQuery && location.pathname != '/') {
 			searchInGithub()
 		}
-	}, [searchQuery])
+	}, [])
+
+
 
 
 	useEffect(() => {
@@ -119,7 +115,15 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 
 						/>
 					</div>
+					<Button
+						variant="contained"
+						color="secondary"
+						onClick={() => history.push('/bookmarks')}
+					>
+						Delete
+					</Button>
 				</div>
+
 			</AppBar>
 
 			{

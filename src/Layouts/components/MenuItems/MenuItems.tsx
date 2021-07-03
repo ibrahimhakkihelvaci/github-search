@@ -38,7 +38,12 @@ const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_
 			link: "/users",
 			count: user_count
 		},
-		{ text: "Bookmarked", icon: <BookmarkBorderIcon />, count: 0 },
+		{
+			text: "Bookmarked",
+			icon: <BookmarkBorderIcon />,
+			link: "/bookmarks",
+			count: 0
+		},
 	];
 	return (
 		<>
