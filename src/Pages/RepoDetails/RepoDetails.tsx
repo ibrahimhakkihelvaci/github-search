@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 
 //Redux
 import { connect } from 'react-redux'
@@ -17,7 +17,7 @@ type RepoDetailsProps = {
 
 const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ get_repo_details, match, repositoryDescription }) => {
 	const { owner, name } = match.params;
-	React.useEffect(() => {
+	useEffect(() => {
 		get_repo_details(owner, name)
 	}, []);
 
