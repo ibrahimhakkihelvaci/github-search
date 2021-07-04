@@ -15,9 +15,7 @@ import Divider from "@material-ui/core/Divider";
 
 //Redux
 import { connect } from 'react-redux'
-import { RepositoriesReducersProps } from '../../../data/reducers/repositoriesReducer';
-import { UsersReducersProps } from '../../../data/reducers/usersReducer'
-import { BookmarksReducersProps } from '../../../data/reducers/bookmarksReducer'
+import { RepositoriesReducersProps, UsersReducersProps, BookmarksReducersProps } from '../../../data/reducers';
 
 //Utils
 import colors from '../../../utils/colors'

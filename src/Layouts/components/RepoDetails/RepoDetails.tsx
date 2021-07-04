@@ -26,8 +26,7 @@ import pullRequests from '../../../utils/images/git-pull-request-24.png'
 
 //Redux
 import { connect } from 'react-redux'
-import { RepositoryDetailsReducerProps } from '../../../data/reducers/repositoryDetailsReducer'
-import { BookmarksReducersProps } from '../../../data/reducers/bookmarksReducer'
+import { RepositoryDetailsReducerProps, BookmarksReducersProps } from '../../../data/reducers'
 import { add_bookmark, remove_bookmark } from '../../../data/actions'
 import { Repository } from '../../../types'
 
@@ -41,7 +40,7 @@ type RepoDetailsProps = {
 
 const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmarks, add_bookmark, remove_bookmark, match }) => {
 	const classes = useStyles();
-	const { subscribers_count, html_url, stargazers_count, pull_requests, open_issues, full_name, forks, description, branch, id } = repository
+	const { subscribers_count, html_url, stargazers_count, open_issues, full_name, forks, description, id } = repository
 	const { owner, name } = match.params;
 	const [addedInBookmark, setAddenInBookmark] = useState(false)
 	const [branchCount, setBranchcount] = useState(0)

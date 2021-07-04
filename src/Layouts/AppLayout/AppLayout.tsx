@@ -22,8 +22,7 @@ import MenuRoute from "../../Routes/MenuRoute/MenuRoute";
 //Redux
 import { connect } from 'react-redux';
 import { get_repositories, get_users, filter_bookmarks } from '../../data/actions'
-import { RepositoriesReducersProps } from '../../data/reducers/repositoriesReducer';
-import { UsersReducersProps } from '../../data/reducers/usersReducer'
+import { RepositoriesReducersProps, UsersReducersProps } from '../../data/reducers';
 
 //Componentes
 import EmptyPage from '../../Pages/EmptyPage'
@@ -143,7 +142,8 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 									<main className={classes.content}>
 										<Toolbar />
 										{children}
-									</main></>
+									</main>
+								</>
 							) : (
 								<div className={classes.emptyPage}>
 									<EmptyPage />

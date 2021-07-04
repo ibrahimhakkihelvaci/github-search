@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 
 //MUI Comps
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 
 //Components
 import ResultItem from "../ResultItem";

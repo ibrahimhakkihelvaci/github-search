@@ -9,7 +9,7 @@ import bookmark from '../../../utils/images/bookmark.png'
 
 //Redux
 import { connect } from 'react-redux'
-import { BookmarksReducersProps } from '../../../data/reducers/bookmarksReducer'
+import { BookmarksReducersProps } from '../../../data/reducers'
 
 type BookmarksProps = {
     bookmarks_count: number

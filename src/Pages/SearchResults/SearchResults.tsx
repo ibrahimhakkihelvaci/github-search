@@ -4,10 +4,7 @@ import { Repository } from '../../types'
 
 //Redux
 import { connect } from 'react-redux'
-import { UsersReducersProps } from '../../data/reducers/usersReducer'
-import { BookmarksReducersProps } from '../../data/reducers/bookmarksReducer'
-import { RepositoriesReducersProps } from '../../data/reducers/repositoriesReducer'
-
+import { UsersReducersProps, BookmarksReducersProps, RepositoriesReducersProps } from '../../data/reducers'
 
 //Components
 import Results from '../../components/Results'

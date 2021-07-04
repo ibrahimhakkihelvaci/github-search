@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 //Redux
 import { connect } from 'react-redux'
 import { get_repo_details } from '../../data/actions'
-import { RepositoryDetailsReducerProps } from '../../data/reducers/repositoryDetailsReducer'
+import { RepositoryDetailsReducerProps } from '../../data/reducers'
 
 //MUI Comps
 import Typography from "@material-ui/core/Typography";

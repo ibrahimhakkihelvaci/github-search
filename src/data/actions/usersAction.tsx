@@ -6,7 +6,6 @@ import requests from '../../utils/agent'
 
 export const get_users = (query: string) => async (dispatch: Dispatch): Promise<void> => {
     try {
-
         dispatch({
             type: SET_LOADING
         })
@@ -21,9 +20,6 @@ export const get_users = (query: string) => async (dispatch: Dispatch): Promise<
                 list: data.items
             }
         });
-
-
-
     } catch (error) {
         console.log(error);
     }
