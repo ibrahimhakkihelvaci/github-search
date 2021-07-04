@@ -1,12 +1,13 @@
 import { REMOVE_BOOKMARK, ADD_BOOKMARK, FILTER_BOOKMARKS } from "./types";
 import { Dispatch } from "redux";
 import store from '../../store'
-type test = { id: string }
+
+let bookmarksInStorage = localStorage.getItem('bookmarks')
+let addedBookmarks = bookmarksInStorage ? JSON.parse(bookmarksInStorage) : []
 
 export const add_bookmark = (repository: any) => async (dispatch: Dispatch): Promise<void> => {
     try {
-        let bookmarksInStorage = localStorage.getItem('bookmarks')
-        let addedBookmarks = bookmarksInStorage ? JSON.parse(bookmarksInStorage) : []
+
         localStorage.setItem('bookmarks', JSON.stringify([...addedBookmarks, repository]))
 
         dispatch({
@@ -20,6 +21,8 @@ export const add_bookmark = (repository: any) => async (dispatch: Dispatch): Pro
 
 export const remove_bookmark = (repoId: string) => (dispatch: Dispatch) => {
     try {
+        let removedBookmark = addedBookmarks.filter((bookmark: any) => bookmark.id != repoId)
+        localStorage.setItem('bookmarks', JSON.stringify([...removedBookmark]))
         dispatch({
             type: REMOVE_BOOKMARK,
             payload: {

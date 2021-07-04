@@ -10,9 +10,7 @@ import Bookmarks from '../../Layouts/components/Bookmarks'
 const MenuRoute: FunctionComponent = () => {
 	return (
 		<HashRouter>
-			<Route path='/repositories' exact component={MenuItems} />
-			<Route path='/users' exact component={MenuItems} />
-			<Route path='/search-bookmarks' exact component={MenuItems} />
+			<Route path={["/repositories", "/users", "/search-bookmarks"]} exact component={MenuItems} />
 			<Route path='/bookmarks' exact component={Bookmarks} />
 			<Route path='/repo-details/:owner/:name' exact component={RepoDetails} />
 			<Route path='/user-details/:id' exact component={UserDetails} />

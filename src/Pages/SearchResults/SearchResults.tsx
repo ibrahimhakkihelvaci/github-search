@@ -13,7 +13,6 @@ type SearchResultsProps = {
     users: UsersReducersProps;
     bookmarks: BookmarksReducersProps
     repositiories: RepositoriesReducersProps
-    isSearchBookmark?: boolean
 }
 
 

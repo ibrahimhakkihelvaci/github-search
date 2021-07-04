@@ -11,12 +11,7 @@ const ContentRoute: FunctionComponent = () => {
 	return (
 		<HashRouter>
 			<Switch>
-				<Route path='/repositories' exact component={SearchResults} />
-				<Route path='/users' exact component={SearchResults} />
-				<Route path='/bookmarks' exact component={SearchResults} />
-				<Route path='/search-bookmarks' exact  >
-					<SearchResults isSearchBookmark={true} />
-				</Route>
+				<Route path={["/repositories", "/users", "/bookmarks", '/search-bookmarks']} exact component={SearchResults} />
 				<Route path='/repo-details/:owner/:name' exact component={RepoDetails} />
 				<Route path='/user-details/:id' exact component={UserDetails} />
 			</Switch>

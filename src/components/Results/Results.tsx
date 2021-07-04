@@ -44,12 +44,12 @@ const Results: FunctionComponent<ResultsProps> = ({
 			<div>
 				{
 					isRepo ? (
-						data.list.map((item: any) => (
-							<ResultItem isRepo={isRepo} ownerName={item.owner.login} title={item.name} description={item.description} />
+						data.list.map((item: any, index) => (
+							<ResultItem key={index} isRepo={isRepo} ownerName={item.owner.login} title={item.name} description={item.description} />
 						))
 					) : (
-						data.list.map((item: any) => (
-							<ResultItem isRepo={isRepo} title={item.login} description={item.url} avatar={item.avatar_url} />
+						data.list.map((item: any, index) => (
+							<ResultItem key={index} isRepo={isRepo} title={item.login} description={item.url} avatar={item.avatar_url} />
 						))
 					)
 				}

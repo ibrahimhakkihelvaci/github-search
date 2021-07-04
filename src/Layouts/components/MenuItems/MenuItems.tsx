@@ -54,9 +54,9 @@ const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_
 	];
 	return (
 		<>
-			{menuItems.map((item) => (
+			{menuItems.map((item, index) => (
 				<Link to={`${item.link}`} style={{ textDecoration: "none", color: colors.black }}>
-					<ListItem button key={item.text} className={location.pathname == item.link ? classes.selectedMenuItem : classes.menuItem}>
+					<ListItem button key={index} className={location.pathname == item.link ? classes.selectedMenuItem : classes.menuItem}>
 						<ListItemIcon
 							style={{ color: location.pathname == item.link ? colors.darkBlue : colors.lightGray }}
 						>{item.icon}</ListItemIcon>
