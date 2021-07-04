@@ -72,6 +72,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 	useEffect(() => {
 		if (searchQuery && location.pathname != '/') {
 			searchInGithub()
+			filter_bookmarks(searchQuery)
 		}
 	}, [])
 

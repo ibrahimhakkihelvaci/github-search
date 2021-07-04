@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const base_url = "https://api.github.com";
+const token = "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";
+axios.defaults.headers.common["Authorization"] = `token ${token}`;
 
 const requests = {
 	getRepositories: (query) =>
