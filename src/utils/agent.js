@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const base_url = "https://api.github.com";
-const token = "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";
+const token = "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";
 axios.defaults.headers.common["Authorization"] = `token ${token}`;
 
 const requests = {
