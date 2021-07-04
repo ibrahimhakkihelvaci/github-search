@@ -16,6 +16,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import { connect } from 'react-redux'
 import { RepositoriesReducersProps } from '../../../data/reducers/repositoriesReducer';
 import { UsersReducersProps } from '../../../data/reducers/usersReducer'
+import { BookmarksReducersProps } from '../../../data/reducers/bookmarksReducer'
 
 //Utils
 import colors from '../../../utils/colors'
@@ -23,10 +24,11 @@ import colors from '../../../utils/colors'
 
 type MenuItemsProps = {
 	user_count: number,
-	repositiory_count: number
+	repositiory_count: number,
+	bookmark_count: number
 }
 
-const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_count }) => {
+const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_count, bookmark_count }) => {
 
 	const classes = useStyles()
 	let location = useLocation()
@@ -47,8 +49,8 @@ const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_
 		{
 			text: "Bookmarked",
 			icon: <BookmarkBorderIcon />,
-			link: "/bookmarks",
-			count: 0
+			link: "/search-bookmarks",
+			count: bookmark_count
 		},
 	];
 	return (
@@ -73,10 +75,12 @@ const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_
 type reduxProps = {
 	Users: UsersReducersProps;
 	Repositiories: RepositoriesReducersProps;
+	Bookmarks: BookmarksReducersProps
 };
 const mapStateToProps = (state: reduxProps) => ({
 	user_count: state.Users.total_count,
-	repositiory_count: state.Repositiories.total_count
+	repositiory_count: state.Repositiories.total_count,
+	bookmark_count: state.Bookmarks.filteredBookmarks.length
 });
 
 export default connect(mapStateToProps)(MenuItems);

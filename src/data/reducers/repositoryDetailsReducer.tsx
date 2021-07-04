@@ -2,11 +2,11 @@ import { SET_REPOSITORY } from "../actions/types";
 import { Repository } from '../../types'
 
 export type RepositoryDetailsReducerProps = {
-    repository: Repository
+    repository: Repository,
 };
 
 const initialState: RepositoryDetailsReducerProps = {
-    repository: {} as Repository
+    repository: {} as Repository,
 };
 
 type Action = {
@@ -19,13 +19,13 @@ export default function (
     action: any
 ): RepositoryDetailsReducerProps {
     const { type, payload } = action;
-
     switch (type) {
         case SET_REPOSITORY:
             return {
                 ...state,
-                repository: payload
+                repository: payload,
             };
+
         default:
             return { ...state };
     }

@@ -22,7 +22,7 @@ import MenuRoute from "../../Routes/MenuRoute/MenuRoute";
 
 //Redux
 import { connect } from 'react-redux';
-import { get_repositories, get_users } from '../../data/actions'
+import { get_repositories, get_users, filter_bookmarks } from '../../data/actions'
 import { RepositoriesReducersProps } from '../../data/reducers/repositoriesReducer';
 import { UsersReducersProps } from '../../data/reducers/usersReducer'
 
@@ -33,13 +33,14 @@ import Loading from '../../components/Loading'
 type AppLayoutProps = {
 	get_repositories: (query: string) => void;
 	get_users: (query: string) => void;
+	filter_bookmarks: (searchQuery: string) => void;
 	user_loading: boolean;
 	repository_loading: boolean;
 }
 
 const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 	const classes = useStyles();
-	const { children, get_repositories, get_users, user_loading, repository_loading, } = props;
+	const { children, get_repositories, get_users, user_loading, repository_loading, filter_bookmarks } = props;
 
 	let history = useHistory()
 	let location = useLocation()
@@ -63,6 +64,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 	const onSubmit = (e: any) => {
 		if (e.key === 'Enter') {
 			searchInGithub()
+			filter_bookmarks(searchQuery)
 			localStorage.setItem('searchStr', searchQuery)
 			history.push(`/repositories`)
 		}
@@ -165,4 +167,4 @@ const mapStateToProps = (state: reduxProps) => ({
 	repository_loading: state.Repositiories.loading
 });
 
-export default connect(mapStateToProps, { get_repositories, get_users })(AppLayout);
+export default connect(mapStateToProps, { get_repositories, get_users, filter_bookmarks })(AppLayout);

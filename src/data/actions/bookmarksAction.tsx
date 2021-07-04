@@ -1,6 +1,7 @@
-import { REMOVE_BOOKMARK, ADD_BOOKMARK } from "./types";
+import { REMOVE_BOOKMARK, ADD_BOOKMARK, FILTER_BOOKMARKS } from "./types";
 import { Dispatch } from "redux";
-
+import store from '../../store'
+import Bookmarks from "../../Layouts/components/Bookmarks";
 
 
 export const add_bookmark = (repository: any) => async (dispatch: Dispatch): Promise<void> => {
@@ -9,9 +10,31 @@ export const add_bookmark = (repository: any) => async (dispatch: Dispatch): Pro
             type: ADD_BOOKMARK,
             payload: repository
         });
+    } catch (error) {
+        console.log(error);
+    }
+};
 
+export const remove_bookmark = (repoId: string) => (dispatch: Dispatch) => {
+    try {
+        dispatch({
+            type: REMOVE_BOOKMARK,
+            payload: {
+                id: repoId
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-
+export const filter_bookmarks = (searchStr: string) => (dispatch: Dispatch) => {
+    try {
+        dispatch({
+            type: FILTER_BOOKMARKS,
+            payload: store.getState().Bookmarks.list.filter((bookmark) =>
+                bookmark.name.toLowerCase().indexOf(searchStr.toLowerCase()) > -1)
+        });
     } catch (error) {
         console.log(error);
     }

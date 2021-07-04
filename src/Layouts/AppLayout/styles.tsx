@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 	logo: {
 		width: 138,
 		height: 21,
+		cursor: 'pointer'
 	},
 	appBarContent: {
 		display: "flex",

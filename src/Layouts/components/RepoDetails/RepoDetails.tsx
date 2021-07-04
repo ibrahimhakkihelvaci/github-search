@@ -26,16 +26,17 @@ import pullRequests from '../../../utils/images/git-pull-request-24.png'
 import { connect } from 'react-redux'
 import { RepositoryDetailsReducerProps } from '../../../data/reducers/repositoryDetailsReducer'
 import { BookmarksReducersProps } from '../../../data/reducers/bookmarksReducer'
-import { add_bookmark } from '../../../data/actions'
+import { add_bookmark, remove_bookmark } from '../../../data/actions'
 import { Repository } from '../../../types'
 
 type RepoDetailsProps = {
 	repository: Repository,
 	add_bookmark: (repository: any) => void
+	remove_bookmark: (repoId: string) => void;
 	bookmarks: Repository[]
 }
 
-const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmarks, add_bookmark }) => {
+const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmarks, add_bookmark, remove_bookmark }) => {
 	const classes = useStyles();
 	const { subscribers_count, html_url, stargazers_count, pull_requests, open_issues, full_name, forks, description, branch, id } = repository
 	const [addedInBookmark, setAddenInBookmark] = useState(false)
@@ -62,7 +63,7 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmark
 		{
 			icon: branches,
 			text: "Branches",
-			count: branch,
+			count: branch ? branch : 0,
 		},
 		{
 			icon: issues,
@@ -72,7 +73,7 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmark
 		{
 			icon: pullRequests,
 			text: "Pull Requests",
-			count: pull_requests,
+			count: pull_requests ? pull_requests : 0,
 		},
 	];
 
@@ -130,7 +131,7 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmark
 					color="primary"
 					startIcon={<BookmarkBorderSharpIcon />}
 					className={addedInBookmark ? classes.removeBookmarkButton : classes.addBookmarkButton}
-					onClick={() => add_bookmark(repository)}>
+					onClick={() => addedInBookmark ? remove_bookmark(repository.id) : add_bookmark(repository)}>
 
 					{addedInBookmark ? "Remove bookmark" : "Add to bookmark"}
 				</Button>
@@ -148,4 +149,4 @@ const mapStateToProps = (state: reduxProps) => ({
 	bookmarks: state.Bookmarks.list
 });
 
-export default connect(mapStateToProps, { add_bookmark })(RepoDetails);
+export default connect(mapStateToProps, { add_bookmark, remove_bookmark })(RepoDetails);

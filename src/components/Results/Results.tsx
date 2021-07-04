@@ -13,6 +13,7 @@ import { User, Repository } from '../../types'
 
 type ResultsProps = {
 	isRepo?: boolean;
+	location?: string;
 	data: {
 		list: User[] | Repository[],
 		total_count: number
@@ -21,13 +22,24 @@ type ResultsProps = {
 
 const Results: FunctionComponent<ResultsProps> = ({
 	isRepo,
-	data
+	data,
+	location
 }) => {
+
+	const returnTitle = () => {
+		if (location == '/users')
+			return 'User Results'
+		if (location == '/repositories')
+			return 'Repository Results'
+		else
+			return 'Bookmarked Repository Results'
+	}
+
 	return (
 		<>
 			<div style={{ marginBottom: 18 }}>
 				<Typography style={{ fontSize: 24 }}>
-					{data.total_count} Repository Results
+					{data.total_count} {returnTitle()}
 				</Typography>
 			</div>
 			<div>
