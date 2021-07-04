@@ -1,6 +1,9 @@
 import { ADD_BOOKMARK, REMOVE_BOOKMARK, FILTER_BOOKMARKS } from "../actions/types";
 import { Repository } from '../../types'
 
+let bookmarksInStorage = localStorage.getItem('bookmarks')
+let addedBookmarks = bookmarksInStorage ? JSON.parse(bookmarksInStorage) : []
+
 export type BookmarksReducersProps = {
     total_count: number;
     list: Repository[];
@@ -9,8 +12,8 @@ export type BookmarksReducersProps = {
 };
 
 const initialState: BookmarksReducersProps = {
-    total_count: 0,
-    list: [],
+    total_count: addedBookmarks.length,
+    list: addedBookmarks,
     filteredBookmarks: []
 };
 

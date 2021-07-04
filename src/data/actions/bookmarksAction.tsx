@@ -1,11 +1,14 @@
 import { REMOVE_BOOKMARK, ADD_BOOKMARK, FILTER_BOOKMARKS } from "./types";
 import { Dispatch } from "redux";
 import store from '../../store'
-import Bookmarks from "../../Layouts/components/Bookmarks";
-
+type test = { id: string }
 
 export const add_bookmark = (repository: any) => async (dispatch: Dispatch): Promise<void> => {
     try {
+        let bookmarksInStorage = localStorage.getItem('bookmarks')
+        let addedBookmarks = bookmarksInStorage ? JSON.parse(bookmarksInStorage) : []
+        localStorage.setItem('bookmarks', JSON.stringify([...addedBookmarks, repository]))
+
         dispatch({
             type: ADD_BOOKMARK,
             payload: repository

@@ -7,7 +7,6 @@ import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import Button from '@material-ui/core/Button';
@@ -137,7 +136,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 											<List>
 												<MenuRoute />
 											</List>
-											<Divider />
+
 										</div>
 									</Drawer>
 									<main className={classes.content}>

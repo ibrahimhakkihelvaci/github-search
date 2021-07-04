@@ -7,12 +7,14 @@ import CustomListItem from "../../../components/CustomListItem";
 import { useStyles } from "./styles";
 import repoIcon from "../../../utils/images/book.png";
 import colors from "../../../utils/colors";
+import requests from "../../../utils/agent";
 
 //MUI Comps
 import Typography from "@material-ui/core/Typography";
 import LinkIcon from "@material-ui/icons/Link";
 import Button from '@material-ui/core/Button';
 import BookmarkBorderSharpIcon from '@material-ui/icons/BookmarkBorderSharp';
+import Container from '@material-ui/core/Container';
 
 //Icons
 import eye from "../../../utils/images/eye-24.png";
@@ -34,12 +36,16 @@ type RepoDetailsProps = {
 	add_bookmark: (repository: any) => void
 	remove_bookmark: (repoId: string) => void;
 	bookmarks: Repository[]
+	match: { params: { owner: string, name: string } };
 }
 
-const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmarks, add_bookmark, remove_bookmark }) => {
+const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmarks, add_bookmark, remove_bookmark, match }) => {
 	const classes = useStyles();
 	const { subscribers_count, html_url, stargazers_count, pull_requests, open_issues, full_name, forks, description, branch, id } = repository
+	const { owner, name } = match.params;
 	const [addedInBookmark, setAddenInBookmark] = useState(false)
+	const [branchCount, setBranchcount] = useState(0)
+	const [pullCount, setPullCount] = useState(0)
 
 	const repoContentItems = [
 		{
@@ -63,7 +69,7 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmark
 		{
 			icon: branches,
 			text: "Branches",
-			count: branch ? branch : 0,
+			count: branchCount,
 		},
 		{
 			icon: issues,
@@ -73,7 +79,7 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmark
 		{
 			icon: pullRequests,
 			text: "Pull Requests",
-			count: pull_requests ? pull_requests : 0,
+			count: pullCount,
 		},
 	];
 
@@ -86,6 +92,19 @@ const RepoDetails: FunctionComponent<RepoDetailsProps> = ({ repository, bookmark
 				setAddenInBookmark(false)
 		}
 	}, [bookmarks, repository])
+
+	useEffect(() => {
+		if (owner && name) {
+			requests.getRepoBranches(owner, name).then((res) => {
+				if (res.data)
+					setBranchcount(res.data.length)
+			})
+			requests.getRepoPulls(owner, name).then((res) => {
+				if (res.data)
+					setPullCount(res.data.length)
+			})
+		}
+	}, [owner, name])
 
 	return (
 		<div className={classes.container}>

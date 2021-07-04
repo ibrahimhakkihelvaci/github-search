@@ -11,6 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import Divider from "@material-ui/core/Divider";
 
 //Redux
 import { connect } from 'react-redux'
@@ -67,7 +68,9 @@ const MenuItems: FunctionComponent<MenuItemsProps> = ({ user_count, repositiory_
 						</ListItemSecondaryAction>
 					</ListItem>
 				</Link>
+
 			))}
+			<Divider />
 		</>
 	);
 };

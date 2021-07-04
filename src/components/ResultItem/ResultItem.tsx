@@ -20,7 +20,7 @@ const ResultItem: FunctionComponent<ResultItemTypes> = ({ isRepo, title, descrip
 	return (
 		<div className={classes.container}>
 			<div className={classes.icon}>
-				<img src={!isRepo ? avatar : bookIcon} style={{ height: 24, width: 24 }} />
+				<img src={!isRepo ? avatar : bookIcon} style={{ height: 24, width: 24, borderRadius: !isRepo ? '50%' : '0' }} />
 			</div>
 			<div className={classes.content}>
 				<Link

@@ -10,6 +10,10 @@ const requests = {
 	getUserRepos: (userName) => axios.get(`${base_url}/users/${userName}/repos`),
 	getRepoDetails: (owner, name) =>
 		axios.get(`${base_url}/repos/${owner}/${name}`),
+	getRepoBranches: (owner, name) =>
+		axios.get(`${base_url}/repos/${owner}/${name}/branches`),
+	getRepoPulls: (owner, name) =>
+		axios.get(`${base_url}/repos/${owner}/${name}/pulls`),
 };
 
 export default requests;
