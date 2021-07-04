@@ -1,9 +1,12 @@
 ## Github Search App
 
  
+ 
+## Tech Stack
+      - React
+      - Material-ui
+      
 
-## Project Status
-(only necessary if incomplete)
 
  
 #### 
@@ -25,10 +28,5 @@ To Start Server:
 To Visit App:
 
 `localhost:3000/ideas`  
-
-## Tech Stack
-      - React
-      - Material-ui
-      
 
 
