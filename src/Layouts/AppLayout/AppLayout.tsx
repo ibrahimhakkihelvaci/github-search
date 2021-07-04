@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import BookmarkBorderSharpIcon from '@material-ui/icons/BookmarkBorderSharp';
 
 //Utils
-import logo from "../../utils/images/digieggs-logo.png";
+import logo from "../../utils/images/company-logo.png";
 import { useStyles } from "./styles";
 
 //Routes
