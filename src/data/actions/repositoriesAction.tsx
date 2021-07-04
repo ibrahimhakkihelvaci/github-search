@@ -11,7 +11,7 @@ export const get_repositories = (query: string) => async (dispatch: Dispatch): P
 			type: SET_LOADING
 		})
 
-		const res = await requests.getRepositories(query)
+		const res = await requests.getRepos(query)
 		const { data } = res
 
 		dispatch({
