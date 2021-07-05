@@ -39,11 +39,10 @@ const useStyles = makeStyles((theme) => ({
 	addBookmarkButton: {
 		width: "100%",
 		height: "38px",
+		fontSize: "16px",
 		color: colors.lightBlue2,
 		textTransform: "capitalize",
-		fontSize: "1rem",
 		border: `1px solid ${colors.lightBlue2}`,
-		borderRadius: "4px",
 		"&:hover": {
 			backgroundColor: colors.lightBlue2,
 			color: colors.white,
@@ -53,12 +52,11 @@ const useStyles = makeStyles((theme) => ({
 	removeBookmarkButton: {
 		width: "100%",
 		height: "38px",
+		fontSize: "16px",
 		color: colors.white,
 		backgroundColor: colors.lightBlue2,
 		textTransform: "capitalize",
-		fontSize: "1rem",
 		border: `1px solid ${colors.lightBlue2}`,
-		borderRadius: "4px",
 		"&:hover": {
 			backgroundColor: colors.white,
 			color: colors.lightBlue2,

@@ -9,5 +9,6 @@ const colors = {
 	turquoise: "#85b0f2",
 	blue: "#d9e8ff",
 	lightGray: "#707070",
+	light: "#6687b7",
 };
 export default colors;

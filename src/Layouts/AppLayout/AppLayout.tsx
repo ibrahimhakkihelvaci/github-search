@@ -15,7 +15,7 @@ import BookmarkBorderSharpIcon from '@material-ui/icons/BookmarkBorderSharp';
 //Utils
 import logo from "../../utils/images/company-logo.png";
 import { useStyles } from "./styles";
-
+import colors from '../../utils/colors'
 //Routes
 import MenuRoute from "../../Routes/MenuRoute/MenuRoute";
 
@@ -110,7 +110,7 @@ const AppLayout: FunctionComponent<AppLayoutProps> = (props) => {
 					<Button className={classes.bookmarkButton}
 						startIcon={<BookmarkBorderSharpIcon />}
 						onClick={() => history.push('/bookmarks')}
-						style={location.pathname === "/bookmarks" ? { background: "#557dbb" } : {}}>
+						style={location.pathname === "/bookmarks" ? { background: colors.light } : {}}>
 						Bookmarks
 					</Button>
 				</div>
